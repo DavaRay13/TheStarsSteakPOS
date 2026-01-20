@@ -19,7 +19,7 @@ Catatan: Pastikan gambar tersedia di folder docs/ atau ganti URL di atas dengan 
 Pastiin lu udah punya Python 3.10+ dan PostgreSQL di laptop lu.
 ### 1. Clone Repository
 ```
-git clone [https://github.com/username/SizzleTrack-POS.git](https://github.com/username/SizzleTrack-POS.git)
+git clone [https://github.com/DavaRay13/TheStarsSteakPOS.git](https://github.com/DavaRay13/TheStarsSteakPOS.git)
 cd SizzleTrack-POS
 ```
 ### 2. Setup Virtual Environment
