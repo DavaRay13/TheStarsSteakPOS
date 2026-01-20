@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - The Stars Steak</title>
+    
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <h2>The Stars Steak POS - Admin</h2>
+        </div>
+        <div class="user-info">
+            <span id="welcome-message">Welcome, Owner!</span>
+            <button id="logout-button">Logout</button>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        
+        <nav class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="#dashboard" class="nav-link active" data-target="content-dashboard">Dashboard</a></li>
+                <li><a href="#menu" class="nav-link" data-target="content-menu">Manajemen Menu</a></li>
+                <li><a href="#modifiers" class="nav-link" data-target="content-modifiers">Manajemen Modifier</a></li>
+                <li><a href="#stok" class="nav-link" data-target="content-stok">Manajemen Stok</a></li>
+                <li><a href="#laporan" class="nav-link" data-target="content-laporan">Laporan</a></li>
+                <li><a href="#users" class="nav-link" data-target="content-users">Manajemen Users</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            
+            <section id="content-dashboard" class="content-section active">
+                <h1>Dashboard Overview</h1>
+                <p>Selamat datang di panel admin. Silakan pilih menu di sidebar.</p>
+                <div class="report-summary-container">
+                    <div class="summary-card">
+                        <h4>Total Omzet (Hari Ini)</h4>
+                        <span id="summary-omzet">Memuat...</span>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Total Transaksi (Hari Ini)</h4>
+                        <span id="summary-transaksi">Memuat...</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-menu" class="content-section">
+                <h1>Manajemen Kategori & Menu</h1>
+                <div class="menu-layout">
+                    <div class="menu-form-container">
+                        <h3>Tambah Kategori Baru</h3>
+                        <form id="add-category-form">
+                            <div class="form-group">
+                                <label for="category-name">Nama Kategori (Cth: Steak, Minuman)</label>
+                                <input type="text" id="category-name" required>
+                            </div>
+                            <button type="submit" class="btn-submit">Tambah Kategori</button>
+                        </form>
+                    </div>
+                    <div class="menu-table-container">
+                        <h3>Daftar Kategori Saat Ini</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama Kategori</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="category-table-body">
+                                <tr><td colspan="3" style="text-align: center;">Memuat...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <hr class="section-divider">
+
+                <div class="menu-layout">
+                    <div class="menu-form-container">
+                        <h3>Tambah Menu Baru</h3>
+                        <form id="add-menu-form">
+                            <div class="form-group">
+                                <label for="menu-name">Nama Menu</label>
+                                <input type="text" id="menu-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="menu-price">Harga (Rp)</label>
+                                <input type="number" id="menu-price" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="menu-category">Kategori</label>
+                                <select id="menu-category" required>
+                                    <option value="">Pilih Kategori</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-submit">Tambah Menu</button>
+                        </form>
+                    </div>
+                    <div class="menu-table-container">
+                        <h3>Daftar Menu Saat Ini</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama Menu</th>
+                                    <th>Harga</th>
+                                    <th>Kategori</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="menu-table-body">
+                                <tr><td colspan="5" style="text-align: center;">Memuat menu...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-modifiers" class="content-section">
+                <h1>Manajemen Modifier (Pilihan Menu)</h1>
+                <div class="menu-layout">
+                    <div class="menu-form-container">
+                        <h3>Buat Pilihan Baru</h3>
+                        <form id="add-group-form">
+                            <h4>1. Buat Grup Pilihan</h4>
+                            <div class="form-group">
+                                <label for="group-name">Nama Grup (Cth: Tingkat Kematangan)</label>
+                                <input type="text" id="group-name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="group-is-required" checked>
+                                <label for="group-is-required">Wajib Dipilih Kasir?</label>
+                            </div>
+                            <button type="submit" class="btn-submit">Buat Grup</button>
+                        </form>
+                        <hr>
+                        <form id="add-modifier-form">
+                            <h4>2. Buat Pilihan Individual</h4>
+                            <div class="form-group">
+                                <label for="modifier-group-select">Grup:</label>
+                                <select id="modifier-group-select" required>
+                                    <option value="">Pilih Grup</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="modifier-name">Nama Pilihan (Cth: Medium Rare)</label>
+                                <input type="text" id="modifier-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="modifier-price">Tambahan Harga (Rp)</label>
+                                <input type="number" id="modifier-price" min="0" value="0" required>
+                            </div>
+                            <button type="submit" class="btn-submit">Buat Pilihan</button>
+                        </form>
+                        <hr>
+                        <h4>Daftar Grup & Pilihan Saat Ini</h4>
+                        <div id="existing-modifiers-list">
+                            <p>Memuat daftar...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-table-container">
+                        <h3>Hubungkan Grup Pilihan ke Menu</h3>
+                        <div class="form-group">
+                            <label for="menu-select-linking">Pilih Menu untuk Di-edit:</label>
+                            <select id="menu-select-linking">
+                                <option value="">Pilih Menu...</option>
+                            </select>
+                        </div>
+                        <div id="modifier-linking-area" style="display: none;">
+                            <h4>Grup Pilihan untuk <span id="selected-menu-name">...</span></h4>
+                            <div id="modifier-group-checkboxes">
+                            </div>
+                            <button id="save-menu-modifiers" class="btn-submit">Simpan Link</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-stok" class="content-section">
+                <h1>Manajemen Stok (Bahan Baku)</h1>
+                <div class="menu-layout">
+                    <div class="menu-form-container">
+                        <h3>Tambah Bahan Baku Baru</h3>
+                        <form id="add-stock-form">
+                            <div class="form-group">
+                                <label for="material-name">Nama Bahan</label>
+                                <input type="text" id="material-name" placeholder="Cth: Daging Sirloin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="material-unit">Satuan (Unit)</label>
+                                <select id="material-unit" required>
+                                    <option value="">Pilih Satuan</option>
+                                    <option value="gram">gram (g)</option>
+                                    <option value="ml">mililiter (ml)</option>
+                                    <option value="pcs">buah (pcs)</option>
+                                    <option value="kg">kilogram (kg)</option>
+                                    <option value="liter">liter (L)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="material-stock">Stok Awal</label>
+                                <input type="number" id="material-stock" min="0" step="0.01" placeholder="Cth: 1000 (untuk 1kg/1L)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="material-alert">Batas Stok Minimum (Alert)</label>
+                                <input type="number" id="material-alert" min="0" step="0.01" placeholder="Cth: 500 (untuk 500g/500ml)">
+                                </div>
+                            <button type="submit" class="btn-submit">Tambah Bahan</button>
+                        </form>
+                    </div>
+                    <div class="menu-table-container">
+                        <h3>Daftar Stok Bahan Baku</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama Bahan</th>
+                                    <th>Stok Saat Ini</th>
+                                    <th>Satuan</th>
+                                    <th>Batas Alert</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stock-table-body">
+                                <tr><td colspan="6" style="text-align: center;">Memuat stok...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-laporan" class="content-section">
+                <h1>Laporan (Hari Ini)</h1>
+                
+                <div class="menu-table-container report-section">
+                    <h3>Penjualan per Kasir</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nama Kasir</th>
+                                <th>Total Transaksi</th>
+                                <th>Total Omzet</th>
+                            </tr>
+                        </thead>
+                        <tbody id="report-cashier-table">
+                            <tr><td colspan="3" style="text-align: center;">Memuat...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="menu-layout report-section">
+                    <div class="menu-table-container">
+                        <h3>Menu Terlaris (Top 5)</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nama Menu</th>
+                                    <th>Total Terjual</th>
+                                </tr>
+                            </thead>
+                            <tbody id="report-best-selling-table">
+                                <tr><td colspan="2" style="text-align: center;">Memuat...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="menu-table-container">
+                        <h3>Laporan Stok Kritis</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nama Bahan</th>
+                                    <th>Sisa Stok</th>
+                                    <th>Batas Alert</th>
+                                </tr>
+                            </thead>
+                            <tbody id="report-stock-alert-table">
+                                <tr><td colspan="3" style="text-align: center;">Memuat...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-users" class="content-section">
+                <h1>Manajemen Users (Kasir)</h1>
+                <div class="menu-layout">
+                    <div class="menu-form-container">
+                        <h3>Tambah User Baru</h3>
+                        <form id="add-user-form">
+                            <div class="form-group">
+                                <label for="user-username">Username</label>
+                                <input type="text" id="user-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-password">Password</label>
+                                <input type="password" id="user-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-role">Role</label>
+                                <select id="user-role" required>
+                                    <option value="kasir">Kasir</option>
+                                    <option value="owner">Owner (Admin)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-submit">Tambah User</button>
+                        </form>
+                    </div>
+                    <div class="menu-table-container">
+                        <h3>Daftar User Aktif Saat Ini</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <tr><td colspan="4" style="text-align: center;">Memuat...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+
+    <div id="edit-menu-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" data-target="edit-menu-modal">&times;</span>
+            <div>
+                <h2>Edit Menu</h2>
+                <form id="edit-menu-form">
+                    <input type="hidden" id="edit-menu-id">
+                    <div class="form-group">
+                        <label for="edit-menu-name">Nama Menu</label>
+                        <input type="text" id="edit-menu-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-menu-price">Harga (Rp)</label>
+                        <input type="number" id="edit-menu-price" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-menu-category">Kategori</label>
+                        <select id="edit-menu-category" required>
+                            <option value="">Memuat kategori...</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                </form>
+            </div>
+            <div class="recipe-manager">
+                <hr>
+                <h3>Manajemen Resep untuk <span id="recipe-menu-name">...</span></h3>
+                <form id="add-recipe-form">
+                    <div class="form-group-inline">
+                        <label for="recipe-material-select">Bahan Baku:</label>
+                        <select id="recipe-material-select" required>
+                            <option value="">Pilih bahan...</option>
+                        </select>
+                        <label for="recipe-quantity">Jumlah:</label>
+                        <input type="number" id="recipe-quantity" min="0" step="0.01" placeholder="Cth: 200" required>
+                        <button type="submit" class="btn-add-recipe">+ Tambah</button>
+                    </div>
+                </form>
+                <table class="data-table recipe-table">
+                    <thead>
+                        <tr>
+                            <th>Bahan Baku</th>
+                            <th>Jumlah</th>
+                            <th>Satuan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recipe-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id="edit-stock-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content-small">
+            <span class="modal-close" data-target="edit-stock-modal">&times;</span>
+            <h2>Edit Bahan Baku</h2>
+            <form id="edit-stock-form">
+                <input type="hidden" id="edit-stock-id">
+                <div class="form-group">
+                    <label for="edit-material-name">Nama Bahan</label>
+                    <input type="text" id="edit-material-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-material-unit">Satuan (Unit)</label>
+                    <select id="edit-material-unit" required>
+                        <option value="gram">gram (g)</option>
+                        <option value="ml">mililiter (ml)</option>
+                        <option value="pcs">buah (pcs)</option>
+                        <option value="kg">kilogram (kg)</option>
+                        <option value="liter">liter (L)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-material-alert">Batas Stok Minimum (Alert)</label>
+                    <input type="number" id="edit-material-alert" min="0" step="0.01" required>
+                </div>
+                <button type="submit" class="btn-submit">Simpan Perubahan</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="add-stock-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content-small">
+            <span class="modal-close" data-target="add-stock-modal">&times;</span>
+            <h2>Tambah/Kurangi Stok</h2>
+            <p>Stok untuk: <strong id="add-stock-item-name">...</strong></p>
+            <form id="add-stock-quantity-form">
+                <input type="hidden" id="add-stock-id">
+                <div class="form-group">
+                    <label for="add-stock-quantity">Jumlah (Gunakan minus untuk mengurangi)</label>
+                    <input type="number" id="add-stock-quantity" step="0.01" placeholder="Cth: 5000 (utk 5kg) atau -100" required>
+                </div>
+                <button type="submit" class="btn-submit">Update Stok</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

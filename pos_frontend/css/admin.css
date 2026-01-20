@@ -1,0 +1,297 @@
+/* Reset dasar */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    height: 100%;
+}
+
+/* --- Header --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: 50px; 
+    box-sizing: border-box;
+}
+.header .logo h2 { margin: 0; color: #0056b3; }
+.header .user-info { display: flex; align-items: center; }
+.header .user-info span { margin-right: 20px; font-weight: bold; }
+
+#logout-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+#logout-button:hover { background-color: #c9302c; }
+
+/* --- Kontainer Utama (Flexbox) --- */
+.admin-container {
+    display: flex;
+    height: calc(100vh - 50px); 
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 240px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    flex-shrink: 0; 
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+.sidebar h3 { margin-top: 0; border-bottom: 1px solid #34495e; padding-bottom: 10px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li { margin: 15px 0; }
+.sidebar ul li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.sidebar ul li a:hover { background-color: #34495e; }
+.sidebar ul li a.active { background-color: #007bff; color: white; }
+
+/* --- Konten Utama --- */
+.main-content {
+    flex-grow: 1; 
+    padding: 30px;
+    overflow-y: auto; 
+    box-sizing: border-box;
+}
+.content-section { display: none; }
+.content-section.active { display: block; }
+.content-section h1 { margin-top: 0; }
+
+/* --- Kartu Ringkasan Dashboard --- */
+.report-summary-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+.summary-card {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.summary-card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: normal;
+}
+.summary-card span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* --- Layout Form & Tabel (Menu & Stok) --- */
+.menu-layout { display: flex; gap: 30px; }
+.menu-form-container { flex: 1; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.menu-table-container { flex: 2; }
+.menu-form-container h3 { margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.menu-form-container hr { border: none; border-top: 1px solid #eee; margin: 20px 0; }
+
+/* Pemisah Antar Bagian */
+.section-divider {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 30px 0;
+}
+/* (BARU) Spasi antar tabel laporan */
+.report-section {
+    margin-bottom: 30px;
+}
+
+
+/* --- Style Form Umum --- */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.btn-submit:hover { background-color: #218838; }
+
+/* --- Style Tabel Data --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.data-table th,
+.data-table td { border: 1px solid #ddd; padding: 12px 15px; text-align: left; }
+.data-table thead { background-color: #f8f9fa; }
+.data-table tbody tr:nth-child(even) { background-color: #f8f9fa; }
+.data-table tbody tr:hover { background-color: #f1f1f1; }
+.data-table tr.archived { 
+    background-color: #f9f9f9;
+    color: #999;
+    font-style: italic;
+}
+.text-danger { color: #d9534f; font-weight: bold; }
+
+/* --- Tombol Aksi Tabel --- */
+.btn-edit { background-color: #ffc107; color: #333; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 5px; }
+.btn-edit:hover { background-color: #e0a800; }
+.btn-delete { background-color: #d9534f; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+.btn-delete:hover { background-color: #c9302c; }
+.btn-add-stock { background-color: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-right: 5px; }
+.btn-add-stock:hover { background-color: #0056b3; }
+.btn-add-recipe { 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-add-recipe:hover { background-color: #0056b3; }
+
+
+/* --- Modal Edit --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 500px; 
+    max-height: 90vh; 
+    overflow-y: auto; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+.modal-content-small {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-close {
+    position: absolute; top: 10px; right: 20px;
+    font-size: 28px; font-weight: bold; color: #aaa;
+    cursor: pointer;
+}
+.modal-close:hover { color: #333; }
+
+/* --- Style Manajemen Resep di Modal --- */
+.recipe-manager hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+.recipe-manager h3 { margin-top: 0; }
+.form-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.form-group-inline label { font-weight: bold; margin-bottom: 0; }
+.form-group-inline select { width: 180px; padding: 8px; }
+.form-group-inline input { width: 80px; padding: 8px; }
+
+.recipe-table { margin-top: 15px; }
+.recipe-table th, .recipe-table td { padding: 8px 10px; }
+
+/* --- Style Checkbox Modifier --- */
+#modifier-group-checkboxes {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.checkbox-group {
+    display: block;
+    margin-bottom: 10px;
+}
+.checkbox-group label {
+    font-weight: normal;
+    margin-left: 5px;
+}
+#save-menu-modifiers {
+    margin-top: 15px;
+}
+
+/* --- Style Daftar Modifier --- */
+#existing-modifiers-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+}
+.modifier-group-item {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.modifier-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.modifier-group-header .btn-delete {
+    padding: 2px 8px; 
+    font-size: 12px;
+}
+.modifier-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0 5px 15px; 
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+}
+.modifier-item span {
+    color: #555;
+}
+.modifier-item .btn-delete {
+    padding: 1px 6px;
+    font-size: 12px;
+}
